@@ -35,8 +35,14 @@ function App(): JSX.Element {
   return (
     <>
       <h1>ToDo App</h1>
-      <ToDoList incompleteItems={incompleteItems} />
-      <CompletedList completedItems={completedItems} />
+      <ToDoList
+        baseURL={"https://tododatabase30nov.herokuapp.com/"}
+        incompleteItems={incompleteItems}
+      />
+      <CompletedList
+        baseURL={"https://tododatabase30nov.herokuapp.com/"}
+        completedItems={completedItems}
+      />
     </>
   );
 }

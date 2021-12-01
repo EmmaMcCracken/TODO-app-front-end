@@ -4,23 +4,24 @@ const axios = require("axios").default;
 
 interface ToDoListProps {
   incompleteItems: item[] | undefined;
+  baseURL: string;
 }
 
 export function ToDoList(props: ToDoListProps): JSX.Element {
   const [descriptionToAdd, setDescriptionToAdd] = useState("");
   async function handleAddDecription() {
-    const res = await axios.post("http://localhost:4000/items", {
+    const res = await axios.post(`${props.baseURL}items`, {
       description: descriptionToAdd,
     });
     setDescriptionToAdd(" ");
   }
   async function handleMarkCompleted(id: number) {
-    const res = await axios.patch(`http://localhost:4000/items/${id}`, {
+    const res = await axios.patch(`${props.baseURL}${id}`, {
       isCompleted: true,
     });
   }
   async function handleDelete(id: number) {
-    const res = await axios.delete(`http://localhost:4000/items/${id}`, {});
+    const res = await axios.delete(`${props.baseURL}/items/${id}`, {});
   }
   return (
     <>
