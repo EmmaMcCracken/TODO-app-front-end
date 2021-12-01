@@ -16,7 +16,7 @@ export function ToDoList(props: ToDoListProps): JSX.Element {
     setDescriptionToAdd(" ");
   }
   async function handleMarkCompleted(id: number) {
-    const res = await axios.patch(`${props.baseURL}${id}`, {
+    const res = await axios.put(`${props.baseURL}/items/${id}`, {
       isCompleted: true,
     });
   }

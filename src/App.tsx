@@ -8,13 +8,15 @@ export interface item {
   isCompleted: boolean;
 }
 
+const baseURL = "https://tododatabase30nov.herokuapp.com";
+
 function App(): JSX.Element {
   const [completedItems, setCompletedItems] = useState<item[]>();
   const [incompleteItems, setIncompleteItems] = useState<item[]>();
 
   useEffect(() => {
     const fetchCompletedItems = async () => {
-      const response = await fetch("http://localhost:4000/items/completed");
+      const response = await fetch(`${baseURL}/items/completed`);
       const jsonBody: item[] = await response.json();
       setCompletedItems(jsonBody);
     };
@@ -24,7 +26,7 @@ function App(): JSX.Element {
 
   useEffect(() => {
     const fetchInompleteItems = async () => {
-      const response = await fetch("http://localhost:4000/items/incomplete");
+      const response = await fetch(`${baseURL}/items/incomplete`);
       const jsonBody: item[] = await response.json();
       setIncompleteItems(jsonBody);
     };
@@ -35,14 +37,8 @@ function App(): JSX.Element {
   return (
     <>
       <h1>ToDo App</h1>
-      <ToDoList
-        baseURL={"https://tododatabase30nov.herokuapp.com/"}
-        incompleteItems={incompleteItems}
-      />
-      <CompletedList
-        baseURL={"https://tododatabase30nov.herokuapp.com/"}
-        completedItems={completedItems}
-      />
+      <ToDoList baseURL={baseURL} incompleteItems={incompleteItems} />
+      <CompletedList baseURL={baseURL} completedItems={completedItems} />
     </>
   );
 }
