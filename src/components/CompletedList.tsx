@@ -8,12 +8,12 @@ interface CompletedListProps {
 
 export function CompletedList(props: CompletedListProps): JSX.Element {
   async function handleUndo(id: number) {
-    const res = await axios.put(`${props.baseURL}/items/${id}`, {
+    await axios.put(`${props.baseURL}/items/${id}`, {
       isCompleted: false,
     });
   }
   async function handleDelete(id: number) {
-    const res = await axios.delete(`${props.baseURL}/items/${id}`, {});
+    await axios.delete(`${props.baseURL}/items/${id}`, {});
   }
 
   return (

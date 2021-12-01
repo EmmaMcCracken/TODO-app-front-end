@@ -1,4 +1,4 @@
-import { useImperativeHandle, useState } from "react";
+import { useState } from "react";
 import { item } from "../App";
 const axios = require("axios").default;
 
@@ -10,18 +10,18 @@ interface ToDoListProps {
 export function ToDoList(props: ToDoListProps): JSX.Element {
   const [descriptionToAdd, setDescriptionToAdd] = useState("");
   async function handleAddDecription() {
-    const res = await axios.post(`${props.baseURL}items`, {
+    await axios.post(`${props.baseURL}items`, {
       description: descriptionToAdd,
     });
     setDescriptionToAdd(" ");
   }
   async function handleMarkCompleted(id: number) {
-    const res = await axios.put(`${props.baseURL}/items/${id}`, {
+    await axios.put(`${props.baseURL}/items/${id}`, {
       isCompleted: true,
     });
   }
   async function handleDelete(id: number) {
-    const res = await axios.delete(`${props.baseURL}/items/${id}`, {});
+    await axios.delete(`${props.baseURL}/items/${id}`, {});
   }
   return (
     <>
