@@ -10,7 +10,7 @@ interface ToDoListProps {
 export function ToDoList(props: ToDoListProps): JSX.Element {
   const [descriptionToAdd, setDescriptionToAdd] = useState("");
   async function handleAddDecription() {
-    await axios.post(`${props.baseURL}items`, {
+    await axios.post(`${props.baseURL}/items`, {
       description: descriptionToAdd,
     });
     setDescriptionToAdd(" ");
